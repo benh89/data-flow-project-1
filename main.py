@@ -9,7 +9,8 @@ from google.cloud import pubsub_v1
 
 # pub/sub values
 PROJECT_ID = "york-cdf-start"
-TOPIC = "dataflow-project-orders"
+TOPIC = "bh-blackfriday-orders"
+#TOPIC = "dataflow-project-orders"
 
 # range values
 order_frequency_range = {'min': 1, 'max': 5, 'step': 1}
@@ -107,7 +108,7 @@ def publish(publisher, topic, message):
 
 def callback(message_future):
     # When timeout is unspecified, the exception method waits indefinitely.
-    if message_future.exception(timeout=30):
+    if message_future.exception(timeout=20):
         print('Publishing message on {} threw an Exception {}.'.format(message_future.exception()))
     else:
         print(message_future.result())
